@@ -94,7 +94,8 @@ export default function HomePage() {
       const data: AnalysisResult = await res.json();
       setResult(data);
     } catch (err: unknown) {
-      setError(err instanceof Error ? err.message : "Unknown error");
+      const msg = err instanceof Error ? err.message : "Unknown error";
+      setError(`${msg} (Attempted to connect to: ${API_URL})`);
     } finally {
       setLoading(false);
     }
